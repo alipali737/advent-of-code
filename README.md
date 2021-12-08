@@ -1,4 +1,4 @@
-# Repo for advent of code 2021
+# Repo for Advent of Code 2021
 [Link to the Advent of Code 2021](https://adventofcode.com/)
 
 Project written in python
