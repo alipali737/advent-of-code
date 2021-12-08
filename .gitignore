@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 # Ignore input files
 *.txt
-=======
-
 __pycache__/
->>>>>>> ce5a0ac244db964f1726095f54715607961d3a8c
