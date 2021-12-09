@@ -1,5 +1,5 @@
 from pydoc import importfile
-f = importfile("../functions.py")
+f = importfile("functions.py")
 
 def Step1():
     # code
@@ -10,5 +10,8 @@ def Step2():
     pass
     
 if __name__ == "__main__":
-    f.average_time(Step1)
-    f.average_time(Step2)
+    s1 = f.average_time(Step1)
+    s2 = f.average_time(Step2)
+    
+    print(f"Part 1 - Average Time: {s1[0]}, Result: {s1[1]}")
+    print(f"Part 2 - Average Time: {s2[0]}, Result: {s2[1]}")
