@@ -4,8 +4,8 @@ def average_time(func, iter = 10):
     total = 0
     for _ in range(iter):
         start = perf_counter()
-        func()
+        funcReturnValue = func()
         end = perf_counter()
         total += end - start
 
-    return total/iter
+    return total/iter, funcReturnValue
