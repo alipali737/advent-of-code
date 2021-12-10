@@ -78,6 +78,84 @@ func step1() {
 	fmt.Printf("Power Consumption = %v\n", powerConsumption)
 }
 
+func getOxygenRating(lines [][]string, columnIndex int) []string {
+	if len(lines) == 1 {
+		return lines[0]
+	}
+
+	if columnIndex == len(lines[0]) {
+		fmt.Printf("Reached end of cycle without final result: %s", lines)
+	}
+
+	var validLines [][]string
+	mcb := mostCommonBit(GetColumn(lines, columnIndex))
+	for _, line := range lines {
+		if line[columnIndex] == mcb {
+			validLines = append(validLines, line)
+		}
+	}
+	columnIndex++
+	return getOxygenRating(validLines, columnIndex)
+}
+
+func getCO2Rating(lines [][]string, columnIndex int) []string {
+	if len(lines) == 1 {
+		return lines[0]
+	}
+
+	if columnIndex == len(lines[0]) {
+		fmt.Printf("Reached end of cycle without final result: %s", lines)
+	}
+
+	var validLines [][]string
+	mcb := mostCommonBit(GetColumn(lines, columnIndex))
+
+	if mcb == "1" {
+		mcb = "0"
+	} else {
+		mcb = "1"
+	}
+
+	for _, line := range lines {
+		if line[columnIndex] == mcb {
+			validLines = append(validLines, line)
+		}
+	}
+	columnIndex++
+	return getCO2Rating(validLines, columnIndex)
+}
+
+func step2() {
+	var lines [][]string
+
+	file, err := os.Open("input.txt")
+	if err != nil {
+		log.Fatalf("Unable to open file: %v\n", err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, strings.Split(scanner.Text(), ""))
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatalf("Error while scanning: %v\n", err)
+	}
+
+	binary := strings.Join(getOxygenRating(lines, 0), "")
+	oxygenRating, _ := strconv.ParseInt(binary, 2, 64)
+	fmt.Printf("Oxygen Rating: %d, Binary: %s\n", oxygenRating, binary)
+
+	binary = strings.Join(getCO2Rating(lines, 0), "")
+	CO2Rating, _ := strconv.ParseInt(binary, 2, 64)
+	fmt.Printf("Oxygen Rating: %d, Binary: %s\n", CO2Rating, binary)
+
+	fmt.Printf("Life Support Rating: %d\n", CO2Rating*oxygenRating)
+
+}
+
 func main() {
 	step1()
+	step2()
 }
