@@ -170,7 +170,7 @@ func Step2() {
 	var finalBoard [][]string
 	calledNums, boards = ImportFile("input.txt")
 
-	for len(boards) > 1 {
+	for len(boards) >= 1 {
 		winningBoardIndex, boards = CallNum2(calledNums[counter], boards)
 		if len(winningBoardIndex) >= 1 {
 			lastCalled = calledNums[counter]
@@ -187,15 +187,15 @@ func Step2() {
 	// fmt.Printf("Winning board: %s\n", boards[winningBoardIndex])
 
 	tot := 0
-	for x := 0; x < len(boards[0]); x++ {
-		for y := 0; y < len(boards[0][0]); y++ {
-			if boards[0][x][y] != "X" {
-				tmp, _ := strconv.Atoi(boards[0][x][y])
+	for x := 0; x < len(finalBoard); x++ {
+		for y := 0; y < len(finalBoard[0]); y++ {
+			if finalBoard[x][y] != "X" {
+				tmp, _ := strconv.Atoi(finalBoard[x][y])
 				tot += tmp
 			}
 		}
 	}
-	tmp, _ := strconv.Atoi(calledNums[counter-1])
+	tmp, _ := strconv.Atoi(lastCalled)
 	tot *= tmp
 
 	fmt.Printf("Result: %d, Last Called: %d, Num of Boards left: %d", tot, tmp, len(boards))
