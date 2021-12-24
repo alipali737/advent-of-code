@@ -51,8 +51,8 @@ def Step2():
         data["grids"] = list(filter(None, data["grids"]))
                 
 if __name__ == "__main__":
-    s1 = f.average_time(Step1, iter=1)
-    s2 = f.average_time(Step2, iter=1)
+    s1 = f.average_time(Step1)
+    s2 = f.average_time(Step2)
     
     print(f"Part 1 - Average Time: {s1[0]}, Result: {s1[1]}")
     print(f"Part 2 - Average Time: {s2[0]}, Result: {s2[1]}")
