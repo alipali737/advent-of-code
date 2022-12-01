@@ -1,2 +1,2 @@
-# Repo for Advent of Code 2021
-[Link to the Advent of Code 2021](https://adventofcode.com/)
+# Repo for Advent of Code Solutions
+[Link to the Advent of Code](https://adventofcode.com/)
