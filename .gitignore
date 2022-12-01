@@ -1,3 +1,4 @@
 # Ignore input files
 *.txt
 __pycache__/
+golang-template.go
