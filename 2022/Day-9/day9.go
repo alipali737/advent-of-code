@@ -75,20 +75,16 @@ func moveHead(direction string, steps int, headPos point, knotPositions []point)
 		moveOffset = point{x: 0, y: 1}
 	}
 
-	fmt.Printf("== %s %d ==\n", direction, steps)
 	for i := 0; i < steps; i++ {
 		headPos.x += moveOffset.x
 		headPos.y += moveOffset.y
 		stepKnotPositions := append([]point{headPos}, knotPositions...)
-		// fmt.Printf("stepKnotPositions: %v\n", stepKnotPositions)
-		// fmt.Printf("    knotPositions: %v\n", knotPositions)
 		for j := 1; j < len(stepKnotPositions); j++ {
 			res := moveKnot(stepKnotPositions[j-1], stepKnotPositions[j])
 			stepKnotPositions[j] = res
 			knotPositions[j-1] = res
 			tailPositions = append(tailPositions, stepKnotPositions[len(stepKnotPositions)-1])
 		}
-		fmt.Println("")
 	}
 
 	return headPos, knotPositions, tailPositions
@@ -97,7 +93,6 @@ func moveHead(direction string, steps int, headPos point, knotPositions []point)
 
 func moveKnot(headPos point, knotPos point) point {
 	if knotPos.isTouchingPoint(headPos) {
-		// fmt.Printf("Knot touching! Knot before: [%d,%d], Knot: [%d,%d]\n", headPos.x, headPos.y, knotPos.x, knotPos.y)
 		return knotPos
 	}
 
@@ -118,8 +113,6 @@ func moveKnot(headPos point, knotPos point) point {
 
 	knotPos.x += diff.x
 	knotPos.y += diff.y
-
-	// fmt.Printf("Knot moving! Knot before: [%d,%d], Knot: [%d,%d], Diff: [%d, %d]\n", headPos.x, headPos.y, knotPos.x, knotPos.y, diff.x, diff.y)
 
 	return knotPos
 
